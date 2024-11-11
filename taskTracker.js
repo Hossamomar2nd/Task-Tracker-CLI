@@ -24,7 +24,7 @@ function addTask(description) {
   const newTask = {
     id: tasks.length + 1,
     description,
-    status: todo,
+    status: "todo",
   };
   tasks.push(newTask);
   saveTasks(tasks);
@@ -35,7 +35,7 @@ function updateTask(id, newDescription) {
   const tasks = loadTasks();
   const task = tasks.find((t) => t.id === id);
   if (task) {
-    tasks.description = newDescription;
+    task.description = newDescription;
     saveTasks(tasks);
     console.log(`task with ID:${id} updated successfully`);
   } else {
@@ -44,7 +44,7 @@ function updateTask(id, newDescription) {
 }
 
 function deleteTask(id) {
-  const tasks = loadTasks();
+  let tasks = loadTasks();
   const initialLength = tasks.length;
   tasks = tasks.filter((task) => task.id !== id);
   if (tasks.length < initialLength) {
@@ -59,7 +59,7 @@ function markTask(id, newstatus) {
   const tasks = loadTasks();
   const task = tasks.find((t) => t.id === id);
   if (task) {
-    tasks.status = newstatus;
+    task.status = newstatus;
     saveTasks(tasks);
     console.log(`task with ID:${id} marked successfully`);
   } else {
